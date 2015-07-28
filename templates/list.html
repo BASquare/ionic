@@ -1,0 +1,30 @@
+<ion-view>
+            <ion-content ng-name="stores">
+                <div class="bar bar-header item-input-inset">
+              <label class="item-input-wrapper">
+                <i class="icon ion-ios-search placeholder-icon"></i>
+                <input type="search" placeholder="Search" ng-model='search'>
+              </label>
+              <button class="button button-clear">
+                Cancel
+              </button>
+            </div>
+
+<div class='row'>
+               <div class='cols col-12 list_body'>
+                    <ul class='list_store'>
+                        <li ng-repeat='store in stores | filter:search'>
+                            <a  href="#/your/{{store.Name}}/{{store.Address}}/{{store.City}}/{{store.Zip}}/{{store.Settings.AcceptingOrders}}">
+                                <input class='check' type='radio' id='rb1' name='rb'/><label for="rb1"></label>
+                                <span>  {{store.Name}}</span><br>
+                                <span class='address'>{{store.Address}}</span><span class='address'>{{store.City}}</span><br>
+                                <span class='address'>{{store.Zip}},</span><span class='address'>{{store.State}}</span>
+                                <span class='accept'>{{store.Settings.AcceptingOrders}}</span>
+                            </a>
+                        </li> 
+                     </ul>
+               </div>
+             </div>
+
+</ion-content>
+  </ion-view>

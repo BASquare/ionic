@@ -1,0 +1,10 @@
+<ion-content >
+    <ion-list ng-controller="somePeople">
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="people in peoples" type="item-text-wrap">
+        <img ng-src="{{people.face}}">
+        <h2>{{people.name}}</h2>
+        <p>{{people.lastText}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+</ion-content>
