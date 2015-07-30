@@ -14,7 +14,7 @@ angular.module('starter', ['ionic','starter.some'])
                           //  controller :'backCTRL'
                         });
                         $stateProvider.state('stores', { 
-                            url: '/stores',
+                            url: '/stores/:formUserId',
                             templateUrl :'templates/list.html'
                           //  controller :'backCTRL'
                         });
@@ -34,10 +34,11 @@ angular.module('starter', ['ionic','starter.some'])
                             //controller : 'selectStore'
                         });
                          $stateProvider.state('detail', { 
-                            url: '/detail/:peopleId',
+                            url: '/detail/:peopleId/:peopleName',
                             templateUrl :'templates/detail.html'
                           //  controller :'backCTRL'
                         });
+                        
                        $urlRouterProvider.otherwise('templates/user.html');
                 })
                 
@@ -59,20 +60,41 @@ angular.module('starter', ['ionic','starter.some'])
             $scope.buy = function(item, price){
                  $scope.products.unshift({item: item, price: price});
             };
-            $scope.delete = function(item, price){
-                var index = $scope.products.indexOf(item);
-                $scope.products.splice(index, 1); 
-            };
         })
                 .controller('somePeople', function($scope,$stateParams, People){
-                    $scope.id = $stateParams.peopleId;
+                  // $scope.id = $stateParams.peopleId;
+                    //$scope.nameUser = $stateParams.peopleName;
                     $scope.peoples = People.all();
                 })
-                .controller('someTest', function($scope, $http){
-                    $scope.nice = 'nice';
-           
-                })
-                      
+                 //use in user.html
+                .controller('FormData',function($scope, $http,$stateParams ){
+                  $http.get('from.json').success(function(data){
+                      $scope.forms = data;
+                    });
+                    $scope.userId = $stateParams.formUserId ;
+                    })
+                        .controller("ContentController", function($scope, $ionicSideMenuDelegate, $stateParams,$ionicActionSheet) {
+                        $scope.toggleLeft = function() {
+                          $ionicSideMenuDelegate.toggleLeft();
+                        };
+                        $scope.id = $stateParams.peopleId;
+                        $scope.nameUser = $stateParams.peopleName;
+                        $scope.show = function() {
+
+                        // Show the action sheet
+                        var hideSheet = $ionicActionSheet.show({
+                          buttons: [
+                            { text: '<b>Share</b> This' },
+                            { text: 'Move' }
+                          ],
+                          destructiveText: 'Delete',
+                          titleText: 'Modify your album',
+                          cancelText: 'Cancel'
+                        });
+                          hideSheet();
+                      };
+                      })
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

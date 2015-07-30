@@ -27,6 +27,7 @@ angular.module('starter.some',[])
                all: function(){
              return peoples;      
                }
+               
            };
         });
 

@@ -6,6 +6,6 @@
 var request = require("request");
 var fs = require('fs');
 request('http://dimpidlogy.com.ua/app.json').pipe(
-    fs.createWriteStream('data.json')
+    fs.createWriteStream('data2.json')
 );
 

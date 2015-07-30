@@ -1,6 +1,46 @@
-<ion-view>
+<!--<ion-view>
     <ion-content ng-controller="somePeople">
         {{id}}
         {{people.name}}
      </ion-content>
-</ion-view>    
+</ion-view>   --> 
+<ion-view >
+    <ion-side-menus>
+  <!-- Center content -->
+  <ion-side-menu-content ng-controller="ContentController">
+        <div class="bar bar-header" ng-click="show()">
+       <button ng-click="toggleLeft()" class="button button-icon icon ion-navicon"></button>
+       <div  class="h1 title">{{nameUser}}</div>
+     </div>
+  </ion-side-menu-content>
+
+  <!-- Left menu -->
+  <ion-side-menu side="left" >
+      <ul class="list" >
+
+  <li class="item item-toggle" style="background:#e0e0e0;">
+     First
+     <label class="toggle toggle-assertive">
+       <input type="checkbox">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+  </li>
+  <li class="item item-toggle" style="background:#e0e0e0;">
+  Second
+     <label class="toggle toggle-assertive">
+       <input type="checkbox">
+       <div class="track">
+         <div class="handle"></div>
+       </div>
+     </label>
+  </li>
+
+</ul>
+  </ion-side-menu>
+
+ 
+ 
+</ion-side-menus>
+</ion-view> 
