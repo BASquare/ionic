@@ -3,10 +3,10 @@
     <ion-list ng-controller="somePeople">
       <ion-item class="item-remove-animate item-avatar item-icon-right people_data" ng-repeat="people in peoples" type="item-text-wrap">
         <img ng-src="{{people.face}}">
-        <a href="#/detail/{{people.id}}"><h2>{{people.name}}</h2>
+        <a href="#/detail/{{people.id}}/{{people.name}}"><h2>{{people.name}}</h2>
         <p>{{people.lastText}}</p>
         <p>{{people.hello}}</p></a>
-      <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+      
       </ion-item>
     </ion-list>
  </ion-content>

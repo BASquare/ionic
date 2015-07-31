@@ -21,16 +21,17 @@
                     <div class="row">
                         <div class="col col-40 col-offset-10"> <button class="button  button-balanced " ng-click="buy(item, price)">ADD TO LIST
                     </button></div>
-                       <div class="col col-40 "> <button class="button  button-assertive " ng-click="delete(item, price)" >DELETE LIST
+                       <div class="col col-40 "> <button class="button  button-assertive " ng-click="products.splice($index, 1)" >DELETE LIST
                     </button></div>
                       </div>
                       <div class="card">
                             <div class="item item-divider cart_product" style="background:#ebebeb; " ng-repeat="product in products">
                              <p><span>Product:</span> <span style="padding-left:30px;">{{product.item}}{{product.face}}</span></p>
                              <p><span>Amount:</span> <span style="padding-left:30px;">{{product.price}}</span></p>
-                             <img src="images/red.png" alt="" ng-click="delete(item, price)"/>
+                             <img src="images/red.png" alt=""  ng-click="products.splice($index, 1)"/>
                            </div>
                    </div>
+                    <input type="text" value="{{namemy}}">
                 </div>   
             </div>
         </div>

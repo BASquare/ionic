@@ -5,16 +5,23 @@
 // the 2nd parameter is an array of 'requires'
 
 //var misc = require('./test');
-angular.module('starter', ['ionic','starter.some'])
+
+//starter.some -  (angular.module in service.js (.factory))
+angular.module('starter', ['ionic','starter.some','ngStorage'])
    .config(function($stateProvider, $urlRouterProvider) {
-                      
+                      /******************************PROVIDERS****************************/
                           $stateProvider.state('user', { 
                             url: '/user',
                             templateUrl :'templates/user.html'
                           //  controller :'backCTRL'
                         });
                         $stateProvider.state('stores', { 
-                            url: '/stores',
+                            url: '/stores/:formsUserId',
+                            templateUrl :'templates/list.html'
+                          //  controller :'backCTRL'
+                        });
+                          $stateProvider.state('topStores', { 
+                            url: '/topStores',
                             templateUrl :'templates/list.html'
                           //  controller :'backCTRL'
                         });
@@ -34,18 +41,19 @@ angular.module('starter', ['ionic','starter.some'])
                             //controller : 'selectStore'
                         });
                          $stateProvider.state('detail', { 
-                            url: '/detail/:peopleId',
+                            url: '/detail/:peopleId/:peopleName',
                             templateUrl :'templates/detail.html'
                           //  controller :'backCTRL'
                         });
                        $urlRouterProvider.otherwise('templates/user.html');
                 })
-                
+                     /****************use index.html (for template list.html)***********/
         .controller('shopCtrl',function($scope, $http){
-                  $http.get('data.json').success(function(data){
+                  $http.get('stores.json').success(function(data){
                       $scope.stores = data;
                     });
                     })
+                    /*****************use in your.html*****************/
         .controller('buyCTRL', function($scope, $stateParams){
                         $scope.namestore = $stateParams.storeName ;
                         $scope.address = $stateParams.storeAddress; 
@@ -54,25 +62,51 @@ angular.module('starter', ['ionic','starter.some'])
                         $scope.accept = $stateParams.storeSettingsAcceptingOrders;  
             $scope.products = [
                     {  item: "Orange", price: '100 kg'  }
-                   // {  item: "Apple", price: 50}
                   ];
             $scope.buy = function(item, price){
                  $scope.products.unshift({item: item, price: price});
             };
-            $scope.delete = function(item, price){
-                var index = $scope.products.indexOf(item);
-                $scope.products.splice(index, 1); 
-            };
         })
-                .controller('somePeople', function($scope,$stateParams, People){
-                    $scope.id = $stateParams.peopleId;
+                 /******************use in test.html*******************/
+        .controller('somePeople', function($scope, People){
                     $scope.peoples = People.all();
                 })
-                .controller('someTest', function($scope, $http){
-                    $scope.nice = 'nice';
-           
-                })
-                      
+                 /**************** use in user.html && list.html*************/
+        .controller('FormData',function($scope, $http,$stateParams, $localStorage ){
+                  $http.get('user.json').success(function(data){
+                       $scope.forms = data;
+                    });
+                    $scope.userId = $stateParams.formsUserId ;
+                    /*****Local storage in form****/
+                    $scope.text  = Math.floor(Math.random()*12345567789).toString(); 
+                    $scope.$storage = $localStorage.$default({
+                    textinput: $scope.text
+                        });
+                  //$localStorage.$reset();
+                    })
+                    /*************use in detail.html**************/
+        .controller("ContentController", function($scope, $ionicSideMenuDelegate, $stateParams,$ionicActionSheet) {
+                        $scope.toggleLeft = function() {
+                          $ionicSideMenuDelegate.toggleLeft();
+                        };
+                        $scope.id = $stateParams.peopleId;
+                        $scope.nameUser = $stateParams.peopleName;
+                        $scope.show = function() {
+
+                        // Show the action sheet
+                        var hideSheet = $ionicActionSheet.show({
+                          buttons: [
+                            { text: '<b>Share</b> This' },
+                            { text: 'Move' }
+                          ],
+                          destructiveText: 'Delete',
+                          titleText: 'Modify your album',
+                          cancelText: 'Cancel'
+                        });
+                          hideSheet();
+                      };
+                      })
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
