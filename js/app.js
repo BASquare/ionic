@@ -16,12 +16,16 @@ angular.module('starter', ['ionic','starter.some','ngStorage'])
                           //  controller :'backCTRL'
                         });
                         $stateProvider.state('stores', { 
+<<<<<<< HEAD
                             url: '/stores/:formsUserId',
                             templateUrl :'templates/list.html'
                           //  controller :'backCTRL'
                         });
                           $stateProvider.state('topStores', { 
                             url: '/topStores',
+=======
+                            url: '/stores/:formUserId',
+>>>>>>> e3de5816e37a6b31360ad17a7a33b11f244cf348
                             templateUrl :'templates/list.html'
                           //  controller :'backCTRL'
                         });
@@ -45,6 +49,7 @@ angular.module('starter', ['ionic','starter.some','ngStorage'])
                             templateUrl :'templates/detail.html'
                           //  controller :'backCTRL'
                         });
+                        
                        $urlRouterProvider.otherwise('templates/user.html');
                 })
                      /****************use index.html (for template list.html)***********/
@@ -67,6 +72,7 @@ angular.module('starter', ['ionic','starter.some','ngStorage'])
                  $scope.products.unshift({item: item, price: price});
             };
         })
+<<<<<<< HEAD
                  /******************use in test.html*******************/
         .controller('somePeople', function($scope, People){
                     $scope.peoples = People.all();
@@ -86,6 +92,21 @@ angular.module('starter', ['ionic','starter.some','ngStorage'])
                     })
                     /*************use in detail.html**************/
         .controller("ContentController", function($scope, $ionicSideMenuDelegate, $stateParams,$ionicActionSheet) {
+=======
+                .controller('somePeople', function($scope,$stateParams, People){
+                  // $scope.id = $stateParams.peopleId;
+                    //$scope.nameUser = $stateParams.peopleName;
+                    $scope.peoples = People.all();
+                })
+                 //use in user.html
+                .controller('FormData',function($scope, $http,$stateParams ){
+                  $http.get('from.json').success(function(data){
+                      $scope.forms = data;
+                    });
+                    $scope.userId = $stateParams.formUserId ;
+                    })
+                        .controller("ContentController", function($scope, $ionicSideMenuDelegate, $stateParams,$ionicActionSheet) {
+>>>>>>> e3de5816e37a6b31360ad17a7a33b11f244cf348
                         $scope.toggleLeft = function() {
                           $ionicSideMenuDelegate.toggleLeft();
                         };

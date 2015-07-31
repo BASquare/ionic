@@ -1,5 +1,6 @@
 <ion-view>
     <ion-content ng-controller="FormData">
+<<<<<<< HEAD
         <form  method="post" action="http://localhost:8180/">
         <div class="list">
             <label class="item item-input item-stacked-label">
@@ -11,6 +12,23 @@
             </label>
            <label class="item item-input item-stacked-label">
               <input type="text"  name="deviceType" value="0">
+=======
+        <form  method="post" action="">
+        <div class="list">
+            <label class="item item-input item-stacked-label">
+              <input type="hidden"  name="DeviceId" value="rjzsrj">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label"> Name</span>
+              <input type="text" placeholder="Suhr" name="userName" >
+            </label>
+            <!-- <label class="item item-input item-stacked-label">
+              <span class="input-label"> Email</span>
+              <input type="text" placeholder="example@gmail.com" name="email">
+            </label>-->
+           <label class="item item-input item-stacked-label">
+              <input type="hidden"  name="deviceType" value="0">
+>>>>>>> e3de5816e37a6b31360ad17a7a33b11f244cf348
             </label>
             <div class="row">
                 <div class="col col-33 col-offset-33">
@@ -20,6 +38,7 @@
           </div>
         </form>
         <br><br><br>
+<<<<<<< HEAD
        <!----Form (UserId) data from user.json file---->
             <form action="" method="" >
                 <div class="list">
@@ -33,10 +52,29 @@
                       <div class="row">
                 <div class="col col-33 col-offset-33">
                     <a href="#/stores/{{forms.UserId}}">SEND TO LIST</a>
+=======
+       <!----Form (UserId)---->
+            <form action="" method="" >
+                <div class="list">
+            <label class="item item-input item-stacked-label" ng-repeat="form in forms">
+                <input  ng-repeat="form in forms" value="{{form.UserId}}"/>
+                
+            </label>
+            <label class="item item-input item-stacked-label" ng-repeat="form in forms">
+                    <input   value="{{form.Success}}"/>
+            </label>
+                      <div class="row">
+                <div class="col col-33 col-offset-33">
+                   <!--<button type="submit" class="button  button-assertive button_user" >SEND</button>-->
+                    <a href="#/stores/{{form.UserId}}">SEND TO LIST</a>
+>>>>>>> e3de5816e37a6b31360ad17a7a33b11f244cf348
                 </div>
             </div>
                </div>
             </form>
+<<<<<<< HEAD
 
+=======
+>>>>>>> e3de5816e37a6b31360ad17a7a33b11f244cf348
     </ion-content>    
 </ion-view>
